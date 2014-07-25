@@ -13,10 +13,8 @@ class Graph
 		endPoint = line[1]
 		distance = line[2].to_i
 
-		@nodes[startPoint] = Array.new
+		@nodes[startPoint] = Array.new unless @nodes[startPoint].is_a? Array
 		@nodes[startPoint].push({:town => endPoint, :distance => distance})
-
-		puts @nodes
 	end
 
 	def get_nodes
