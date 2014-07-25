@@ -8,5 +8,11 @@ class Route
 
 		@graph = graph
 		@towns = towns
+		@town_index = -1
+	end
+
+	def next
+		@town_index = @town_index + 1
+		return @towns[@town_index]
 	end
 end
