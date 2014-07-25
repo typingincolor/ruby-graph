@@ -1,3 +1,5 @@
+require_relative("./duplicate_route")
+
 class Graph
 	def initialize(graph)
 		@nodes = Hash.new(0)
@@ -14,6 +16,13 @@ class Graph
 		distance = line[2].to_i
 
 		@nodes[startPoint] = Array.new unless @nodes[startPoint].is_a? Array
+
+		@nodes[startPoint].each do |existing_line|
+			if existing_line[:town] == endPoint
+				raise DuplicateRoute
+			end
+		end
+
 		@nodes[startPoint].push({:town => endPoint, :distance => distance})
 	end
 

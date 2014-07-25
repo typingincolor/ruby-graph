@@ -13,6 +13,11 @@ describe Graph do
 
 		expect(graph.get_nodes.size).to eq(1)
 		expect(graph.get_nodes["A"]).to eq([{:town => "B", :distance => 5}, {:town => "C", :distance => 4}])
+	end
 
+	it "does not allow a duplicate route to be created" do
+		expect {
+			Graph.new("AB1,AB5")
+		}.to raise_error(DuplicateRoute)
 	end
 end
