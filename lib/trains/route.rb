@@ -58,4 +58,6 @@ class Route
 
 		return @total_distance
 	end
+
+	private :do_walk, :has_next?
 end

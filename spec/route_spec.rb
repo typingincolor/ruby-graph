@@ -23,13 +23,6 @@ describe Route do
 		}.to raise_error(InvalidRouteException)
 	end
 
-	it "has next when at start of route" do
-		graph = Graph.new("AB5")
-		route = Route.new(graph, "A", "B")
-
-		expect(route.has_next?).to be true
-	end
-
 	it "stops a route that starts at an invalid location being created" do
 		graph = Graph.new("AB5")
 		

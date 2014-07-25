@@ -42,11 +42,11 @@ class Graph
 	end
 
 	def distance(start_point, end_point)
-		route = find_route_from(start_point, end_point)
+		route = line_from?(start_point, end_point)
 		return route[:distance]
 	end
 
-	def find_route_from(start_point, end_point) 
+	def line_from?(start_point, end_point) 
 		routes = get_routes_starting_at start_point
 		routes.each do |route|
 			if route[:town] == end_point 
