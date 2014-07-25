@@ -1,4 +1,4 @@
-require_relative("./duplicate_route")
+require_relative("./duplicate_route_exception")
 
 class Graph
 	def initialize(graph)
@@ -19,7 +19,7 @@ class Graph
 
 		@nodes[startPoint].each do |existing_line|
 			if existing_line[:town] == endPoint
-				raise DuplicateRoute
+				raise DuplicateRouteException
 			end
 		end
 

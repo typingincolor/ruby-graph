@@ -1,3 +1,0 @@
-class DuplicateRoute < Exception 
-
-end

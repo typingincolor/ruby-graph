@@ -18,7 +18,7 @@ describe Graph do
 	it "does not allow a duplicate route to be created" do
 		expect {
 			Graph.new("AB1,AB5")
-		}.to raise_error(DuplicateRoute)
+		}.to raise_error(DuplicateRouteException)
 	end
 
 	it "can build a graph with routes starting at two towns" do

@@ -1,0 +1,3 @@
+class DuplicateRouteException < Exception 
+
+end
