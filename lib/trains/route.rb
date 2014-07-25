@@ -7,9 +7,15 @@ class Route
 			raise InvalidRouteException
 		end
 
+		begin
+			graph.get_routes_starting_at towns[0] 
+		rescue NoRoutesFoundException
+			raise InvalidRouteException
+		end	
+
 		@graph = graph
 		@towns = towns
-		@town_index = -1
+		@town_index = 0
 	end
 
 	def next
@@ -27,5 +33,11 @@ class Route
 		end
 
 		return false	
+	end
+
+	def walk
+		while (has_next?) do 
+			puts @towns[@town_index]	
+		end
 	end
 end

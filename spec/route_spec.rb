@@ -23,13 +23,6 @@ describe Route do
 		}.to raise_error(InvalidRouteException)
 	end
 
-	it "can get the first town on a route" do
-		graph = Graph.new("AB5")
-		route = Route.new(graph, "A", "B")
-
-		expect(route.next).to eq("A")
-	end
-
 	it "has next when at start of route" do
 		graph = Graph.new("AB5")
 		route = Route.new(graph, "A", "B")
@@ -37,11 +30,18 @@ describe Route do
 		expect(route.has_next?).to be true
 	end
 
+	it "stops a route that starts at an invalid location being created" do
+		graph = Graph.new("AB5")
+		
+		expect {
+			Route.new(graph, "C", "B")
+		}.to raise_error(InvalidRouteException)
+	end
+
 	it "can walk a route" do
 		graph = Graph.new("AB5")
 		route = Route.new(graph, "A", "B")
 
-		expect(route.next).to eq("A")
 		expect(route.next).to eq("B")
 	end
 
@@ -49,7 +49,6 @@ describe Route do
 		graph = Graph.new("AB5")
 		route = Route.new(graph, "A", "B")
 
-		expect(route.next).to eq("A")
 		expect(route.next).to eq("B")
 
 		expect {
