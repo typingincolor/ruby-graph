@@ -55,4 +55,18 @@ describe Route do
 			route.next
 		}.to raise_error(EndOfRouteException)
 	end
+
+	it "can calculate the distance between two towns" do
+		graph = Graph.new("AB5")
+		route = Route.new(graph, "A", "B")
+
+		expect(route.get_distance).to eq(5)
+	end
+
+	it "cannot calculate the distance between two towns if no route exists" do
+		graph = Graph.new("AB5")
+		route = Route.new(graph, "A", "C")
+
+		expect {route.get_distance}.to raise_error(NoSuchRouteException)
+	end
 end

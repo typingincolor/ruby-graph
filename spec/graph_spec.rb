@@ -42,4 +42,26 @@ describe Graph do
 			graph.get_routes_starting_at "D"
 			}.to raise_error(NoRoutesFoundException)
 	end
+
+	it "can find a route between two towns" do
+		graph = Graph.new("AB5,AC4,CB6")
+
+		route = graph.find_route_from("A", "B")
+
+		expect(route).to eq({:town => "B", :distance => 5})
+	end
+
+	it "throws NoSuchRouteException when it tries to find a route between two towns and none exists" do
+		graph = Graph.new("AB5,AC4,CB6,CD5")
+
+		expect {
+			graph.find_route_from("A", "D")
+		}.to raise_error(NoSuchRouteException)
+	end
+
+	it "can calculate the distance between two towns" do
+		graph = Graph.new("AB5")
+
+		expect(graph.distance("A", "B")).to be 5
+	end
 end

@@ -16,6 +16,7 @@ class Route
 		@graph = graph
 		@towns = towns
 		@town_index = 0
+		@total_distance = -1
 	end
 
 	def next
@@ -36,8 +37,25 @@ class Route
 	end
 
 	def walk
-		while (has_next?) do 
-			puts @towns[@town_index]	
+		@total_distance = 0
+
+		do_walk
+	end
+
+	def do_walk
+		begin
+			@total_distance = @total_distance + @graph.distance(@towns[@town_index], self.next())
+			do_walk
+		rescue EndOfRouteException
+			return
 		end
+	end
+
+	def get_distance
+		if @total_distance == -1
+			self.walk
+		end
+
+		return @total_distance
 	end
 end
