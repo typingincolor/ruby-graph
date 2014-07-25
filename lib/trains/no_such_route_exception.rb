@@ -1,0 +1,3 @@
+class NoSuchRouteException < Exception
+
+end
