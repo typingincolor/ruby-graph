@@ -29,4 +29,19 @@ describe Route do
 
 		expect(route.next).to eq("A")
 	end
+
+	it "has next when at start of route" do
+		graph = Graph.new("AB5")
+		route = Route.new(graph, "A", "B")
+
+		expect(route.has_next?).to be true
+	end
+
+	it "can walk a route" do
+		graph = Graph.new("AB5")
+		route = Route.new(graph, "A", "B")
+
+		expect(route.next).to eq("A")
+		expect(route.next).to eq("B")
+	end
 end

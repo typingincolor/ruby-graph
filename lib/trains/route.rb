@@ -15,4 +15,12 @@ class Route
 		@town_index = @town_index + 1
 		return @towns[@town_index]
 	end
+
+	def has_next?
+		if @town_index < @towns.size - 1
+			return true
+		end
+
+		return false	
+	end
 end
