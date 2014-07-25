@@ -44,4 +44,16 @@ describe Route do
 		expect(route.next).to eq("A")
 		expect(route.next).to eq("B")
 	end
+
+	it "stops when at the end of route" do
+		graph = Graph.new("AB5")
+		route = Route.new(graph, "A", "B")
+
+		expect(route.next).to eq("A")
+		expect(route.next).to eq("B")
+
+		expect {
+			route.next
+		}.to raise_error(EndOfRouteException)
+	end
 end
