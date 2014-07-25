@@ -28,4 +28,18 @@ describe Graph do
 		expect(graph.get_nodes["A"]).to eq([{:town => "B", :distance => 5}, {:town => "C", :distance => 4}])
 		expect(graph.get_nodes["C"]).to eq([{:town => "B", :distance => 6}])
 	end
+
+	it "can find routes starting at a valid town" do
+		graph = Graph.new("AB5,AC4,CB6")
+
+		expect(graph.get_routes_starting_at "A").to eq([{:town => "B", :distance => 5}, {:town => "C", :distance => 4}])
+	end
+
+	it "throws a NoRoutesFoundException when asking for routes starting at an invalid town" do
+		graph = Graph.new("AB5,AC4,CB6")
+
+		expect {
+			graph.get_routes_starting_at "D"
+			}.to raise_error(NoRoutesFoundException)
+	end
 end
