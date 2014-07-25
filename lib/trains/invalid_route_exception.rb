@@ -1,0 +1,3 @@
+class InvalidRouteException < Exception 
+
+end
