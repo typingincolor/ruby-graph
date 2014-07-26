@@ -1,10 +1,10 @@
-require_relative("./duplicate_route_exception")
-require_relative("./no_routes_found_exception")
+require_relative('./duplicate_route_exception')
+require_relative('./no_routes_found_exception')
 
 class Graph
 	def initialize(graph)
 		@nodes = Hash.new(0)
-		lines = graph.split(",")
+		lines = graph.split(',')
 
 		lines.each do |x|
 			add_line x
@@ -38,7 +38,7 @@ class Graph
 			raise NoRoutesFoundException
 		end
 
-		return result
+		result
 	end
 
 	def is_there_a_route?(start_point, end_point) 

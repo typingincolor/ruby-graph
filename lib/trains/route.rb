@@ -1,5 +1,5 @@
-require_relative("./invalid_route_exception")
-require_relative("./end_of_route_exception")
+require_relative('./invalid_route_exception')
+require_relative('./end_of_route_exception')
 
 class Route
 	def initialize(*towns)
@@ -11,7 +11,7 @@ class Route
 	end
 
 	def get_stop(index)
-		return @towns[index]
+		@towns[index]
 	end
 
 	def has_next?(index)
@@ -19,6 +19,6 @@ class Route
 			return true
 		end
 
-		return false	
+		false
 	end
 end

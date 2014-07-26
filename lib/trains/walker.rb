@@ -1,4 +1,8 @@
-class Walker 
+require_relative '../trains/no_such_route_exception'
+require_relative '../trains/graph'
+require_relative '../trains/route'
+
+class Walker
 	def initialize(graph, route)
 		@graph = graph
 		@route = route
@@ -20,8 +24,8 @@ class Walker
 			rescue NoRoutesFoundException
 				raise NoSuchRouteException
 			end
-		end	
+		end
 
-		return {:distance => @distance_travelled}	
-	end
+    {:distance => @distance_travelled}
+  end
 end
