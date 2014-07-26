@@ -20,5 +20,17 @@ class Route
 		end
 
 		false
-	end
+  end
+
+  def towns
+    @towns
+  end
+
+  def ==(other)
+    if @towns == other.towns
+      return true
+    end
+
+    false
+  end
 end
