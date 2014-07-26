@@ -1,6 +1,6 @@
 require_relative '../lib/trains/graph.rb'
 require_relative '../lib/trains/route.rb'
-require_relative '../lib/trains/walker.rb'
+require_relative '../lib/trains/traveller.rb'
 require_relative '../lib/trains/duplicate_route_exception.rb'
 require_relative '../lib/trains/invalid_route_exception.rb'
 require_relative '../lib/trains/end_of_route_exception.rb'

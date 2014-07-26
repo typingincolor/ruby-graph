@@ -2,7 +2,7 @@ require_relative '../trains/no_such_route_exception'
 require_relative '../trains/graph'
 require_relative '../trains/route'
 
-class Walker
+class Traveller
 	def initialize(graph, route)
 		@graph = graph
 		@route = route
@@ -11,7 +11,7 @@ class Walker
 		@distance_travelled = 0
 	end
 
-	def walk
+	def travel
 		if @route.has_next? @current_stop
 			next_location = @route.get_stop @current_stop + 1
 			
@@ -20,7 +20,7 @@ class Walker
 				@distance_travelled = @distance_travelled + local_route[:distance]
 				@current_stop = @current_stop + 1
 				@current_location = next_location
-				walk
+				travel
 			rescue NoRoutesFoundException
 				raise NoSuchRouteException
 			end
