@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'acceptance tests' do
 	it 'passes test case 1' do
-		graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
+    graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
 		route = Route.new('A', 'B', 'C')
 		traveller = Traveller.new(graph, route)
 
@@ -62,4 +62,20 @@ describe 'acceptance tests' do
     expect(result).to include Route.new 'A', 'D', 'C', 'D', 'C'
     expect(result).to include Route.new 'A', 'D', 'E', 'B', 'C'
   end
+
+  it 'passes test case 8' do
+    graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
+    finder = ShortestRouteFinder.new graph
+    route = finder.find('A', 'C')
+    expect(route).to eq Route.new 'A', 'B', 'C'
+  end
+
+=begin
+  it 'passes test case 9' do
+    graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
+    finder = ShortestRouteFinder.new graph
+    route = finder.find('B', 'B')
+    expect(route).to eq Route.new 'B', 'C', 'E', 'B'
+  end
+=end
 end

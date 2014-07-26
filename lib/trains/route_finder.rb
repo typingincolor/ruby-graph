@@ -7,7 +7,13 @@ class RouteFinder
     visited = Array.new
     visited.push start_point
 
-    search(visited, end_point)
+    result = search(visited, end_point)
+
+    if result.size == 0
+      raise NoSuchRouteException
+    end
+
+    result
   end
 
   def search(visited, end_point)
