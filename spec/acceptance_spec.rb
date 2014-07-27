@@ -76,4 +76,19 @@ describe 'acceptance tests' do
     route = finder.find('B', 'B')
     expect(route).to eq({:route => Route.new('B', 'C', 'E', 'B'), :distance => 9})
   end
+
+  it 'passes test case 10'do
+    graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
+    finder = RoutesWithMaximumDistanceFinder.new graph
+    routes = finder.find('C', 'C', 30)
+
+    expect(routes.size).to eq(7)
+    expect(routes).to include ({:route => Route.new('C', 'D', 'C'), :distance => 16 })
+    expect(routes).to include ({:route => Route.new('C', 'E', 'B', 'C'), :distance => 9 })
+    expect(routes).to include ({:route => Route.new('C', 'E', 'B', 'C', 'D', 'C'), :distance => 25 })
+    expect(routes).to include ({:route => Route.new('C', 'D', 'C', 'E', 'B', 'C'), :distance => 25 })
+    expect(routes).to include ({:route => Route.new('C', 'D', 'E', 'B', 'C'), :distance => 21 })
+    expect(routes).to include ({:route => Route.new('C', 'E', 'B', 'C', 'E', 'B','C'), :distance => 18 })
+    expect(routes).to include ({:route => Route.new('C', 'E', 'B', 'C', 'E', 'B', 'C', 'E', 'B', 'C'), :distance => 27 })
+  end
 end
