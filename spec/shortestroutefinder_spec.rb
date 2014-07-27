@@ -7,7 +7,7 @@ describe ShortestRouteFinder do
 
     route = route_finder.find('A', 'B')
 
-    expect(route).to eq(Route.new 'A', 'B')
+    expect(route).to eq({:route => Route.new('A', 'B'), :distance => 5})
   end
 
   it 'handles non-existant route' do

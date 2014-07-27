@@ -8,8 +8,9 @@ describe RouteFinder do
     routes = route_finder.find('A', 'B')
 
     expect(routes.size).to eq(2)
-    expect(routes).to include(Route.new 'A', 'B')
-    expect(routes).to include(Route.new 'A', 'C', 'B')
+
+    expect(routes).to include({:route => Route.new('A', 'B'), :distance => 5})
+    expect(routes).to include({:route => Route.new('A', 'C', 'B'), :distance => 7})
   end
 
   it 'handles non-existant route' do
@@ -24,7 +25,8 @@ describe RouteFinder do
     route_finder = RouteFinder.new(graph)
 
     routes = route_finder.find('A', 'A')
+
     expect(routes.size).to eq(1)
-    expect(routes).to include(Route.new 'A', 'B', 'A')
+    expect(routes).to include({:route => Route.new('A', 'B', 'A'), :distance => 10})
   end
 end

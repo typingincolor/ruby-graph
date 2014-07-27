@@ -4,8 +4,8 @@ class RouteFinder
   end
 
   def find(start_point, end_point)
-    visited = Array.new
-    visited.push start_point
+    visited = { :list => Array.new, :distance => 0}
+    visited[:list].push start_point
 
     result = search(visited, end_point, false)
 
@@ -19,32 +19,36 @@ class RouteFinder
   def search(visited, end_point, left_start)
     result = Array.new
     begin
-      routes = @graph.get_routes_starting_at visited.last
+      routes = @graph.get_routes_starting_at visited[:list].last
     rescue NoRoutesFoundException
       return result
     end
 
     routes.each do |route|
-      if visited.include? route[:town] && left_start
+      if visited[:list].include? route[:town] && left_start
         next
       end
 
       if route[:town] == end_point
-        visited.push route[:town]
-        result.push Route.new *visited.clone
-        visited.pop
+        visited[:list].push route[:town]
+        visited[:distance] = visited[:distance] + route[:distance]
+        result.push({:route => Route.new(*visited[:list].clone), :distance => visited[:distance]})
+        visited[:distance] = visited[:distance] - route[:distance]
+        visited[:list].pop
         break
       end
     end
 
     routes.each do |route|
-      if (visited.include? route[:town] || route[:town] != end_point) && left_start
+      if (visited[:list].include? route[:town] || route[:town] != end_point) && left_start
         next
       end
 
-      visited.push route[:town]
+      visited[:list].push route[:town]
+      visited[:distance] = visited[:distance] + route[:distance]
       result.concat search(visited, end_point, true)
-      visited.pop
+      visited[:distance] = visited[:distance] - route[:distance]
+      visited[:list].pop
     end
 
     result

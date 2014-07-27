@@ -5,9 +5,8 @@ class ShortestRouteFinder < RouteFinder
     length_of_shortest_route = 99999999
     shortest_route = nil
     routes.each do |route|
-      traveller = Traveller.new @graph, route
-      if traveller.travel[:distance] < length_of_shortest_route
-        length_of_shortest_route = traveller.travel[:distance]
+      if route[:distance] < length_of_shortest_route
+        length_of_shortest_route = route[:distance]
         shortest_route = route
       end
     end
