@@ -4,7 +4,7 @@ class RouteFinder
   end
 
   def find(start_point, end_point)
-    visited = { :list => Array.new, :distance => 0}
+    visited = {:list => Array.new, :distance => 0}
     visited[:list].push start_point
 
     result = search(visited, end_point, false)
@@ -53,5 +53,7 @@ class RouteFinder
 
     result
   end
+
+  private :search
 end
 

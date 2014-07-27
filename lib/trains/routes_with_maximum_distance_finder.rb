@@ -4,7 +4,7 @@ class RoutesWithMaximumDistanceFinder
   end
 
   def find(start_point, end_point, maximum_distance)
-    visited = { :list => Array.new, :distance => 0}
+    visited = {:list => Array.new, :distance => 0}
     visited[:list].push start_point
 
     result = search(visited, end_point, maximum_distance)
@@ -55,5 +55,7 @@ class RoutesWithMaximumDistanceFinder
 
     result
   end
+
+  private :search
 end
 

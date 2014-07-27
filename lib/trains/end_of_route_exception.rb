@@ -1,3 +1,3 @@
-class EndOfRouteException < Exception 
+class EndOfRouteException < Exception
 
 end

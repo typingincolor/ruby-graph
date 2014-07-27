@@ -7,17 +7,19 @@ describe RouteFinder do
 
     routes = route_finder.find('A', 'B')
 
-    expect(routes.size).to eq(2)
+    expected = [
+        {:route => Route.new('A', 'B'), :distance => 5},
+        {:route => Route.new('A', 'C', 'B'), :distance => 7}
+    ]
 
-    expect(routes).to include({:route => Route.new('A', 'B'), :distance => 5})
-    expect(routes).to include({:route => Route.new('A', 'C', 'B'), :distance => 7})
+    expect(routes).to match_array expected
   end
 
   it 'handles non-existant route' do
     graph = Graph.new('AB5,BC6,AC1')
     route_finder = RouteFinder.new(graph)
 
-    expect{route_finder.find('B', 'A')}.to raise_error NoSuchRouteException
+    expect { route_finder.find('B', 'A') }.to raise_error NoSuchRouteException
   end
 
   it 'makes at least one step' do
@@ -26,7 +28,10 @@ describe RouteFinder do
 
     routes = route_finder.find('A', 'A')
 
-    expect(routes.size).to eq(1)
-    expect(routes).to include({:route => Route.new('A', 'B', 'A'), :distance => 10})
+    expected = [
+        {:route => Route.new('A', 'B', 'A'), :distance => 10}
+    ]
+
+    expect(routes).to match_array expected
   end
 end

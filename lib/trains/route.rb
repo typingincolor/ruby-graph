@@ -1,25 +1,22 @@
-require_relative('./invalid_route_exception')
-require_relative('./end_of_route_exception')
-
 class Route
-	def initialize(*towns)
-		if towns.size < 2 
-			raise InvalidRouteException
-		end
+  def initialize(*towns)
+    if towns.size < 2
+      raise InvalidRouteException
+    end
 
-		@towns = towns
-	end
+    @towns = towns
+  end
 
-	def get_stop(index)
-		@towns[index]
-	end
+  def get_stop(index)
+    @towns[index]
+  end
 
-	def has_next?(index)
-		if index < @towns.size - 1
-			return true
-		end
+  def has_next?(index)
+    if index < @towns.size - 1
+      return true
+    end
 
-		false
+    false
   end
 
   def towns
@@ -35,6 +32,6 @@ class Route
   end
 
   def to_s
-    return @towns.to_s
+    @towns.to_s
   end
 end

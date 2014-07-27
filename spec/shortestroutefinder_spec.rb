@@ -14,6 +14,6 @@ describe ShortestRouteFinder do
     graph = Graph.new('AB5,BC6,AC1')
     route_finder = ShortestRouteFinder.new(graph)
 
-    expect{route_finder.find('B', 'A')}.to raise_error NoSuchRouteException
+    expect { route_finder.find('B', 'A') }.to raise_error NoSuchRouteException
   end
 end

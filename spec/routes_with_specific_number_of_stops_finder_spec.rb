@@ -7,8 +7,11 @@ describe RoutesWithSpecificNumberOfStopsFinder do
 
     routes = route_finder.find('A', 'D', 3)
 
-    expect(routes.size).to eq(1)
-    expect(routes).to include(Route.new 'A', 'B', 'C', 'D')
+    expected = [
+        Route.new('A', 'B', 'C', 'D')
+    ]
+
+    expect(routes).to match_array expected
   end
 
   it 'does not find any routes with 9 stops between A and E' do
