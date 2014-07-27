@@ -70,12 +70,10 @@ describe 'acceptance tests' do
     expect(route).to eq Route.new 'A', 'B', 'C'
   end
 
-=begin
   it 'passes test case 9' do
     graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
     finder = ShortestRouteFinder.new graph
     route = finder.find('B', 'B')
     expect(route).to eq Route.new 'B', 'C', 'E', 'B'
   end
-=end
 end

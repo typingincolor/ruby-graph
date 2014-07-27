@@ -18,4 +18,13 @@ describe RouteFinder do
 
     expect{route_finder.find('B', 'A')}.to raise_error NoSuchRouteException
   end
+
+  it 'makes at least one step' do
+    graph = Graph.new(('AB5,BA5'))
+    route_finder = RouteFinder.new(graph)
+
+    routes = route_finder.find('A', 'A')
+    expect(routes.size).to eq(1)
+    expect(routes).to include(Route.new 'A', 'B', 'A')
+  end
 end

@@ -33,4 +33,8 @@ class Route
 
     false
   end
+
+  def to_s
+    return @towns.to_s
+  end
 end
