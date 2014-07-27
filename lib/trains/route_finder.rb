@@ -7,7 +7,7 @@ class RouteFinder
     visited = Array.new
     visited.push start_point
 
-    result = search(visited, end_point, 0)
+    result = search(visited, end_point, false)
 
     if result.size == 0
       raise NoSuchRouteException
@@ -16,9 +16,7 @@ class RouteFinder
     result
   end
 
-  def search(visited, end_point, iteration)
-    iteration = iteration + 1
-
+  def search(visited, end_point, left_start)
     result = Array.new
     begin
       routes = @graph.get_routes_starting_at visited.last
@@ -27,7 +25,7 @@ class RouteFinder
     end
 
     routes.each do |route|
-      if visited.include? route[:town] && iteration > 1
+      if visited.include? route[:town] && left_start
         next
       end
 
@@ -40,12 +38,12 @@ class RouteFinder
     end
 
     routes.each do |route|
-      if (visited.include? route[:town] || route[:town] != end_point) && iteration > 1
+      if (visited.include? route[:town] || route[:town] != end_point) && left_start
         next
       end
 
       visited.push route[:town]
-      result.concat search(visited, end_point, iteration)
+      result.concat search(visited, end_point, true)
       visited.pop
     end
 
