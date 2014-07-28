@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Traveller do
-  it 'can walk a route between two towns' do
+  it 'can walk a route with two towns' do
     graph = Graph.new('AB5')
     route = Route.new('A', 'B')
     traveller = Traveller.new(graph, route)
@@ -9,7 +9,7 @@ describe Traveller do
     expect(traveller.travel).to eq({:distance => 5})
   end
 
-  it 'can walk a route between two towns' do
+  it 'can walk a route with three towns' do
     graph = Graph.new('AB5,BC4')
     route = Route.new('A', 'B', 'C')
     traveller = Traveller.new(graph, route)
