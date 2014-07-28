@@ -26,7 +26,7 @@ class RoutesWithSpecificNumberOfStopsFinder
 
       if route[:town] == end_point
         visited.push route[:town]
-        result.push Route.new *visited.clone if visited.size == number_of_stops + 1
+        result.push Route.new(*(visited.clone)) if visited.size == number_of_stops + 1
         visited.pop
         break
       end
