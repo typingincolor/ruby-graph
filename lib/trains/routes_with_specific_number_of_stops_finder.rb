@@ -7,7 +7,7 @@ class RoutesWithSpecificNumberOfStopsFinder
     @number_of_stops = number_of_stops
   end
 
-  def find()
+  def find
     visited = VisitedTowns.new @start_point
     search(visited)
   end
@@ -35,7 +35,8 @@ class RoutesWithSpecificNumberOfStopsFinder
       next if route[:town] != @end_point
 
       visited.add route
-      result.push Route.new(*(visited.list.clone)) if visited.size == @number_of_stops + 1
+      result.push \
+        Route.new(*(visited.list.clone)) if visited.size == @number_of_stops + 1
       visited.pop route
       break
     end
