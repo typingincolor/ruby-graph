@@ -1,20 +1,22 @@
 # RouteFinder
 class RouteFinder
-  def initialize(graph)
+  def initialize(graph, start_point, end_point)
     @graph = graph
+    @start_point = start_point
+    @end_point = end_point
   end
 
-  def find(start_point, end_point)
-    visited = VisitedTowns.new start_point
+  def find
+    visited = VisitedTowns.new @start_point
 
-    result = search(visited, end_point, false)
+    result = search(visited, false)
 
     fail NoSuchRouteException if result.size == 0
 
     result
   end
 
-  def search(visited, end_point, left_start)
+  def search(visited, left_start)
     result = []
     begin
       routes = @graph.get_routes_starting_at visited.last
@@ -22,16 +24,16 @@ class RouteFinder
       return result
     end
 
-    handle_at_endpoint routes, end_point, visited, result
+    handle_at_endpoint routes, visited, result
 
-    handle_not_at_endpoint routes,  end_point, left_start, visited, result
+    handle_not_at_endpoint routes, left_start, visited, result
 
     result
   end
 
-  def handle_at_endpoint(routes, end_point, visited, result)
+  def handle_at_endpoint(routes, visited, result)
     routes.each do |route|
-      next if route[:town] != end_point
+      next if route[:town] != @end_point
 
       visited.add route
       result.push(route: Route.new(*visited.list.clone),
@@ -43,12 +45,12 @@ class RouteFinder
     result
   end
 
-  def handle_not_at_endpoint(routes, end_point, left_start, visited, result)
+  def handle_not_at_endpoint(routes, left_start, visited, result)
     routes.each do |route|
       next if visited.list.include?(route[:town]) && left_start
 
       visited.add route
-      result.concat search(visited, end_point, true)
+      result.concat search(visited, true)
       visited.pop route
     end
 

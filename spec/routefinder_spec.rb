@@ -3,9 +3,9 @@ require 'spec_helper'
 describe RouteFinder do
   it 'finds two route between A and B' do
     graph = Graph.new('AB5,AC4,CB3')
-    route_finder = RouteFinder.new(graph)
+    route_finder = RouteFinder.new(graph, 'A', 'B')
 
-    routes = route_finder.find('A', 'B')
+    routes = route_finder.find()
 
     expected = [
         {:route => Route.new('A', 'B'), :distance => 5},
@@ -17,16 +17,16 @@ describe RouteFinder do
 
   it 'handles non-existant route' do
     graph = Graph.new('AB5,BC6,AC1')
-    route_finder = RouteFinder.new(graph)
+    route_finder = RouteFinder.new(graph, 'B', 'A')
 
-    expect { route_finder.find('B', 'A') }.to raise_error NoSuchRouteException
+    expect { route_finder.find() }.to raise_error NoSuchRouteException
   end
 
   it 'makes at least one step' do
     graph = Graph.new(('AB5,BA5'))
-    route_finder = RouteFinder.new(graph)
+    route_finder = RouteFinder.new(graph, 'A', 'A')
 
-    routes = route_finder.find('A', 'A')
+    routes = route_finder.find()
 
     expected = [
         {:route => Route.new('A', 'B', 'A'), :distance => 10}

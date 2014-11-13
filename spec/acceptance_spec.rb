@@ -76,15 +76,16 @@ describe 'acceptance tests' do
 
   it 'passes test case 8' do
     graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
-    finder = ShortestRouteFinder.new graph
-    route = finder.find('A', 'C')
+    finder = ShortestRouteFinder.new graph, 'A', 'C'
+    route = finder.find()
     expect(route).to eq({route: Route.new('A', 'B', 'C'), distance: 9})
   end
 
   it 'passes test case 9' do
     graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
-    finder = ShortestRouteFinder.new graph
-    route = finder.find('B', 'B')
+    finder = ShortestRouteFinder.new graph, 'B', 'B'
+    route = finder.find()
+
     expect(route).to eq({route: Route.new('B', 'C', 'E', 'B'), distance: 9})
   end
 
