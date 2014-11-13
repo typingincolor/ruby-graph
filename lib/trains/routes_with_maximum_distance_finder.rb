@@ -1,17 +1,16 @@
+# RoutesWithMaximumDistanceFinder
 class RoutesWithMaximumDistanceFinder
   def initialize(graph)
     @graph = graph
   end
 
   def find(start_point, end_point, maximum_distance)
-    visited = {:list => Array.new, :distance => 0}
+    visited = { list: [], distance: 0}
     visited[:list].push start_point
 
     result = search(visited, end_point, maximum_distance)
 
-    if result.size == 0
-      raise NoSuchRouteException
-    end
+    fail NoSuchRouteException if result.size == 0
 
     result
   end
@@ -25,15 +24,13 @@ class RoutesWithMaximumDistanceFinder
     end
 
     routes.each do |route|
-      if visited[:distance] > maximum_distance
-        next
-      end
+      next if visited[:distance] > maximum_distance
 
       if route[:town] == end_point
         visited[:list].push route[:town]
         visited[:distance] = visited[:distance] + route[:distance]
         if visited[:distance] < maximum_distance
-          result.push({:route => Route.new(*visited[:list].clone), :distance => visited[:distance]})
+          result.push({ route: Route.new(*visited[:list].clone), distance: visited[:distance] })
         end
         visited[:distance] = visited[:distance] - route[:distance]
         visited[:list].pop
@@ -42,9 +39,7 @@ class RoutesWithMaximumDistanceFinder
     end
 
     routes.each do |route|
-      if visited[:distance] > maximum_distance
-        next
-      end
+      next if visited[:distance] > maximum_distance
 
       visited[:list].push route[:town]
       visited[:distance] = visited[:distance] + route[:distance]
