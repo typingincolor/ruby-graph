@@ -52,5 +52,5 @@ class RoutesWithSpecificNumberOfStopsFinder
     end
   end
 
-  private :search
+  private :search, :handle_at_endpoint, :handle_not_at_endpoint
 end
