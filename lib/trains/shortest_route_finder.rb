@@ -1,8 +1,9 @@
+# ShortestRouteFinder
 class ShortestRouteFinder < RouteFinder
   def find(start_point, end_point)
     routes = super(start_point, end_point)
 
-    length_of_shortest_route = 99999999
+    length_of_shortest_route = 99_999_999
     shortest_route = nil
     routes.each do |route|
       if route[:distance] < length_of_shortest_route

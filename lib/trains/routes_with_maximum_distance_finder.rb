@@ -54,4 +54,3 @@ class RoutesWithMaximumDistanceFinder
 
   private :search
 end
-
