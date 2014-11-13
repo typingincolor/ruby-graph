@@ -33,12 +33,12 @@ class Graph
     result
   end
 
-  def is_there_a_route?(start_point, end_point)
+  def route?(start_point, end_point)
     routes = get_routes_starting_at start_point
     routes.each do |route|
       return route if route[:town] == end_point
     end
 
-    raise NoSuchRouteException
+    fail NoSuchRouteException
   end
 end

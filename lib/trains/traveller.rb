@@ -12,7 +12,7 @@ class Traveller
       next_location = @route.get_stop @current_stop + 1
 
       begin
-        local_route = @graph.is_there_a_route? @current_location, next_location
+        local_route = @graph.route? @current_location, next_location
         @distance_travelled = @distance_travelled + local_route[:distance]
         @current_stop = @current_stop + 1
         @current_location = next_location

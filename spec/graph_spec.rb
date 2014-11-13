@@ -46,7 +46,7 @@ describe Graph do
   it 'can find a route between two towns' do
     graph = Graph.new('AB5,AC4,CB6')
 
-    route = graph.is_there_a_route?('A', 'B')
+    route = graph.route?('A', 'B')
 
     expect(route).to eq({:town => 'B', :distance => 5})
   end
@@ -55,7 +55,7 @@ describe Graph do
     graph = Graph.new('AB5,AC4,CB6,CD5')
 
     expect {
-      graph.is_there_a_route?('A', 'D')
+      graph.route?('A', 'D')
     }.to raise_error(NoSuchRouteException)
   end
 end
