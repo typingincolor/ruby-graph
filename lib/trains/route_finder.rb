@@ -24,7 +24,7 @@ class RouteFinder
     end
 
     routes.each do |route|
-      next if (visited[:list].include? route[:town] && left_start)
+      next if visited[:list].include?(route[:town] && left_start)
 
       if route[:town] == end_point
         visited[:list].push route[:town]
@@ -37,7 +37,7 @@ class RouteFinder
     end
 
     routes.each do |route|
-      next if (visited[:list].include? route[:town] || route[:town] != end_point && left_start)
+      next if visited[:list].include?((route[:town] || (route[:town] != end_point) && left_start))
 
       visited[:list].push route[:town]
       visited[:distance] = visited[:distance] + route[:distance]
