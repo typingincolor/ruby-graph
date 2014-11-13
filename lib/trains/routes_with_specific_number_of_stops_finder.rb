@@ -1,17 +1,18 @@
 # RoutesWithSpecificNumberOfStopsFinder
 class RoutesWithSpecificNumberOfStopsFinder
-  def initialize(graph)
+  def initialize(graph, start_point, end_point, number_of_stops)
     @graph = graph
+    @start_point = start_point
+    @end_point = end_point
+    @number_of_stops = number_of_stops
   end
 
-  def find(start_point, end_point, number_of_stops)
-    visited = []
-    visited.push start_point
-
-    search(visited, end_point, number_of_stops)
+  def find()
+    visited = [@start_point]
+    search(visited)
   end
 
-  def search(visited, end_point, number_of_stops)
+  def search(visited)
     result = []
 
     begin
@@ -21,22 +22,22 @@ class RoutesWithSpecificNumberOfStopsFinder
     end
 
     routes.each do |route|
-      next if visited.size > number_of_stops
+      next if visited.size > @number_of_stops
 
-      next if route[:town] != end_point
+      next if route[:town] != @end_point
 
       visited.push route[:town]
       result.push Route.new(*(visited.clone)) if \
-        visited.size == number_of_stops + 1
+        visited.size == @number_of_stops + 1
       visited.pop
       break
     end
 
     routes.each do |route|
-      next if visited.size > number_of_stops
+      next if visited.size > @number_of_stops
 
       visited.push route[:town]
-      result.concat search(visited, end_point, number_of_stops)
+      result.concat search(visited)
       visited.pop
     end
 

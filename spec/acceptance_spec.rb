@@ -43,9 +43,10 @@ describe 'acceptance tests' do
 
   it 'passes test case 6' do
     graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
-    finder = RoutesWithSpecificNumberOfStopsFinder.new graph
+    finder1 = RoutesWithSpecificNumberOfStopsFinder.new graph, 'C', 'C', 3
+    finder2 = RoutesWithSpecificNumberOfStopsFinder.new graph, 'C', 'C', 2
 
-    result = finder.find('C', 'C', 3).concat finder.find('C', 'C', 2)
+    result = finder1.find().concat finder2.find()
 
     expect(result.size).to eq(2)
 
@@ -59,9 +60,9 @@ describe 'acceptance tests' do
 
   it 'passes test case 7' do
     graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
-    finder = RoutesWithSpecificNumberOfStopsFinder.new graph
+    finder = RoutesWithSpecificNumberOfStopsFinder.new graph, 'A', 'C', 4
 
-    result = finder.find('A', 'C', 4)
+    result = finder.find()
     expect(result.size).to eq(3)
 
     expected = [
