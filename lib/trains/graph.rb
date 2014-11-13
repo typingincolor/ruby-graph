@@ -13,12 +13,10 @@ class Graph
     end_point = line[1]
     distance = line[2].to_i
 
-    @nodes[start_point] = Array.new unless @nodes[start_point].is_a? Array
+    @nodes[start_point] = [] unless @nodes[start_point].is_a? Array
 
     @nodes[start_point].each do |existing_line|
-      if existing_line[:town] == end_point
-        raise DuplicateRouteException
-      end
+      fail DuplicateRouteException if existing_line[:town] == end_point
     end
 
     @nodes[start_point].push({:town => end_point, :distance => distance})
@@ -31,9 +29,7 @@ class Graph
   def get_routes_starting_at(start_point)
     result = @nodes[start_point]
 
-    if result == 0
-      raise NoRoutesFoundException
-    end
+    fail NoRoutesFoundException if result == 0
 
     result
   end
@@ -41,9 +37,7 @@ class Graph
   def is_there_a_route?(start_point, end_point)
     routes = get_routes_starting_at start_point
     routes.each do |route|
-      if route[:town] == end_point
-        return route
-      end
+      return route if route[:town] == end_point
     end
 
     raise NoSuchRouteException

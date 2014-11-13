@@ -5,7 +5,7 @@ class RoutesWithMaximumDistanceFinder
   end
 
   def find(start_point, end_point, maximum_distance)
-    visited = { list: [], distance: 0}
+    visited = { list: [], distance: 0 }
     visited[:list].push start_point
 
     result = search(visited, end_point, maximum_distance)
@@ -23,8 +23,9 @@ class RoutesWithMaximumDistanceFinder
       return result
     end
 
+
     routes.each do |route|
-      next if visited[:distance] > maximum_distance
+      break if visited[:distance] > maximum_distance
 
       if route[:town] == end_point
         visited[:list].push route[:town]
@@ -39,7 +40,7 @@ class RoutesWithMaximumDistanceFinder
     end
 
     routes.each do |route|
-      next if visited[:distance] > maximum_distance
+      break if visited[:distance] > maximum_distance
 
       visited[:list].push route[:town]
       visited[:distance] = visited[:distance] + route[:distance]
