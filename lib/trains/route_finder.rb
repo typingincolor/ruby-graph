@@ -5,7 +5,7 @@ class RouteFinder
   end
 
   def find(start_point, end_point)
-    visited = { :list => [], :distance => 0 }
+    visited = { list: [], distance: 0 }
     visited[:list].push start_point
 
     result = search(visited, end_point, false)
@@ -27,7 +27,7 @@ class RouteFinder
       if route[:town] == end_point
         visited[:list].push route[:town]
         visited[:distance] = visited[:distance] + route[:distance]
-        result.push({:route => Route.new(*visited[:list].clone), :distance => visited[:distance]})
+        result.push({ route: Route.new(*visited[:list].clone), distance: visited[:distance] })
         visited[:distance] = visited[:distance] - route[:distance]
         visited[:list].pop
         break
