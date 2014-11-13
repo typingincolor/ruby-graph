@@ -7,9 +7,8 @@ class RoutesWithMaximumDistanceFinder
     @maximum_distance = maximum_distance
   end
 
-  def find()
-    visited = { list: [], distance: 0 }
-    visited[:list].push @start_point
+  def find
+    visited = VisitedTowns.new @start_point
 
     result = search(visited)
 
@@ -21,7 +20,7 @@ class RoutesWithMaximumDistanceFinder
   def search(visited)
     result = []
     begin
-      routes = @graph.get_routes_starting_at visited[:list].last
+      routes = @graph.get_routes_starting_at visited.last
     rescue NoRoutesFoundException
       return result
     end
@@ -35,36 +34,31 @@ class RoutesWithMaximumDistanceFinder
 
   def handle_at_endpoint(routes, visited, result)
     routes.each do |route|
-      break if visited[:distance] > @maximum_distance
-
+      break if visited.distance > @maximum_distance
       if route[:town] == @end_point
-        visited[:list].push route[:town]
-        visited[:distance] = visited[:distance] + route[:distance]
-        if visited[:distance] < @maximum_distance
-          result.push(route: Route.new(*visited[:list].clone),
-                      distance: visited[:distance])
+        visited.add route
+        if visited.distance < @maximum_distance
+          result.push(route: Route.new(*visited.list.clone),
+                      distance: visited.distance)
         end
-        visited[:distance] = visited[:distance] - route[:distance]
-        visited[:list].pop
+        visited.pop route
         break
       end
     end
 
-    return result
+    result
   end
 
-  def handle_not_at_endpoint routes, visited, result
+  def handle_not_at_endpoint(routes, visited, result)
     routes.each do |route|
-      break if visited[:distance] > @maximum_distance
+      break if visited.distance > @maximum_distance
 
-      visited[:list].push route[:town]
-      visited[:distance] = visited[:distance] + route[:distance]
+      visited.add route
       result.concat search(visited)
-      visited[:distance] = visited[:distance] - route[:distance]
-      visited[:list].pop
+      visited.pop route
     end
 
-    return result
+    result
   end
 
   private :search, :handle_at_endpoint, :handle_not_at_endpoint
