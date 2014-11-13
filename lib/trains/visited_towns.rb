@@ -1,3 +1,4 @@
+# VisitedTowns
 class VisitedTowns
   attr_reader :distance
   attr_reader :list
@@ -22,6 +23,6 @@ class VisitedTowns
   end
 
   def size
-    return list.size
+    list.size
   end
 end
