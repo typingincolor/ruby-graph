@@ -1,8 +1,6 @@
 class Route
   def initialize(*towns)
-    if towns.size < 2
-      raise InvalidRouteException
-    end
+    raise InvalidRouteException if towns.size < 2
 
     @towns = towns
   end
@@ -12,9 +10,7 @@ class Route
   end
 
   def has_next?(index)
-    if index < @towns.size - 1
-      return true
-    end
+    return true if index < @towns.size - 1
 
     false
   end
@@ -24,9 +20,7 @@ class Route
   end
 
   def ==(other)
-    if @towns == other.towns
-      return true
-    end
+    return true if @towns == other.towns
 
     false
   end
