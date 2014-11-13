@@ -31,7 +31,7 @@ class RoutesWithMaximumDistanceFinder
         visited[:distance] = visited[:distance] + route[:distance]
         if visited[:distance] < maximum_distance
           result.push(route: Route.new(*visited[:list].clone),
-            distance: visited[:distance])
+                      distance: visited[:distance])
         end
         visited[:distance] = visited[:distance] - route[:distance]
         visited[:list].pop
