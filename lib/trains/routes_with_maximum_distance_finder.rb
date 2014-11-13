@@ -41,7 +41,6 @@ class RoutesWithMaximumDistanceFinder
                       distance: visited.distance)
         end
         visited.pop route
-        break
       end
     end
 
