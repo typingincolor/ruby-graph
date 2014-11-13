@@ -1,3 +1,4 @@
+# Traveller
 class Traveller
   def initialize(graph, route)
     @graph = graph
@@ -13,8 +14,8 @@ class Traveller
 
       begin
         local_route = @graph.route? @current_location, next_location
-        @distance_travelled = @distance_travelled + local_route[:distance]
-        @current_stop = @current_stop + 1
+        @distance_travelled += local_route[:distance]
+        @current_stop += 1
         @current_location = next_location
         travel
       rescue NoRoutesFoundException
@@ -22,6 +23,6 @@ class Traveller
       end
     end
 
-    {:distance => @distance_travelled}
+    { distance: @distance_travelled }
   end
 end
