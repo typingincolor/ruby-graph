@@ -3,8 +3,7 @@ class VisitedTowns
   attr_reader :list
 
   def initialize(start_point)
-    @list = Array.new
-    @list.push start_point
+    @list = [start_point]
     @distance = 0
   end
 
