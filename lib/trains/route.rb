@@ -1,6 +1,6 @@
 # a route
 class Route
-  attr_reader towns
+  attr_reader :towns
 
   def initialize(*towns)
     fail InvalidRouteException if towns.size < 2
