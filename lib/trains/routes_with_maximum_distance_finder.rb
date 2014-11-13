@@ -16,7 +16,7 @@ class RoutesWithMaximumDistanceFinder
   end
 
   def search(visited, end_point, maximum_distance)
-    result = Array.new
+    result = []
     begin
       routes = @graph.get_routes_starting_at visited[:list].last
     rescue NoRoutesFoundException
@@ -30,7 +30,7 @@ class RoutesWithMaximumDistanceFinder
         visited[:list].push route[:town]
         visited[:distance] = visited[:distance] + route[:distance]
         if visited[:distance] < maximum_distance
-          result.push({ route: Route.new(*visited[:list].clone), distance: visited[:distance] })
+          result.push( route: Route.new(*visited[:list].clone), distance: visited[:distance] )
         end
         visited[:distance] = visited[:distance] - route[:distance]
         visited[:list].pop
