@@ -1,6 +1,6 @@
 class Route
   def initialize(*towns)
-    raise InvalidRouteException if towns.size < 2
+    fail InvalidRouteException if towns.size < 2
 
     @towns = towns
   end
