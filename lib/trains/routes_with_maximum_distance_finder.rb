@@ -35,7 +35,7 @@ class RoutesWithMaximumDistanceFinder
   def handle_at_endpoint(routes, visited, result)
     routes.each do |route|
       break if visited.distance > @maximum_distance
-      if route[:town] == @end_point
+      if visited.distance < @maximum_distance && route[:town] == @end_point
         visited.add route
         if visited.distance < @maximum_distance
           result.push(route: Route.new(*visited.list.clone),
