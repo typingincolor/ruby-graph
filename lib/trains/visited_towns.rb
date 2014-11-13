@@ -21,4 +21,8 @@ class VisitedTowns
   def last
     @list.last
   end
+
+  def size
+    return list.size
+  end
 end

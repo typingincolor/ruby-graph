@@ -8,7 +8,7 @@ class RoutesWithSpecificNumberOfStopsFinder
   end
 
   def find()
-    visited = [@start_point]
+    visited = VisitedTowns.new @start_point
     search(visited)
   end
 
@@ -21,27 +21,34 @@ class RoutesWithSpecificNumberOfStopsFinder
       return result
     end
 
+    handle_at_endpoint routes, visited, result
+
+    handle_not_at_endpoint routes, visited, result
+
+    result
+  end
+
+  def handle_at_endpoint(routes, visited, result)
     routes.each do |route|
       next if visited.size > @number_of_stops
 
       next if route[:town] != @end_point
 
-      visited.push route[:town]
-      result.push Route.new(*(visited.clone)) if \
-        visited.size == @number_of_stops + 1
-      visited.pop
+      visited.add route
+      result.push Route.new(*(visited.list.clone)) if visited.size == @number_of_stops + 1
+      visited.pop route
       break
     end
+  end
 
+  def handle_not_at_endpoint(routes, visited, result)
     routes.each do |route|
       next if visited.size > @number_of_stops
 
-      visited.push route[:town]
+      visited.add route
       result.concat search(visited)
-      visited.pop
+      visited.pop route
     end
-
-    result
   end
 
   private :search
