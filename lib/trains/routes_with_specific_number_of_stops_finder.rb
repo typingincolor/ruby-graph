@@ -4,14 +4,14 @@ class RoutesWithSpecificNumberOfStopsFinder
   end
 
   def find(start_point, end_point, number_of_stops)
-    visited = Array.new
+    visited = []
     visited.push start_point
 
     search(visited, end_point, number_of_stops)
   end
 
   def search(visited, end_point, number_of_stops)
-    result = Array.new
+    result = []
 
     begin
       routes = @graph.get_routes_starting_at visited.last
