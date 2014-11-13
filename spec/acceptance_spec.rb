@@ -89,8 +89,8 @@ describe 'acceptance tests' do
 
   it 'passes test case 10' do
     graph = Graph.new('AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7')
-    finder = RoutesWithMaximumDistanceFinder.new graph
-    routes = finder.find('C', 'C', 30)
+    finder = RoutesWithMaximumDistanceFinder.new graph, 'C', 'C', 30
+    routes = finder.find()
 
     expect(routes.size).to eq(7)
 
