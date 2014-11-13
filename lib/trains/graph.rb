@@ -1,4 +1,7 @@
+# Graph
 class Graph
+  attr_reader :nodes
+
   def initialize(graph)
     @nodes = Hash.new(0)
     lines = graph.split(',')
@@ -19,11 +22,7 @@ class Graph
       fail DuplicateRouteException if existing_line[:town] == end_point
     end
 
-    @nodes[start_point].push({:town => end_point, :distance => distance})
-  end
-
-  def get_nodes
-    @nodes
+    @nodes[start_point].push(town: end_point, distance: distance)
   end
 
   def get_routes_starting_at(start_point)
