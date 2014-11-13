@@ -29,13 +29,13 @@ class RouteFinder
     result
   end
 
-  def handle_at_endpoint routes, end_point, visited, result
+  def handle_at_endpoint(routes, end_point, visited, result)
     routes.each do |route|
       next if route[:town] != end_point
 
       visited.add route
       result.push(route: Route.new(*visited.list.clone),
-        distance: visited.distance)
+                  distance: visited.distance)
       visited.pop route
       break
     end
@@ -43,7 +43,7 @@ class RouteFinder
     result
   end
 
-  def handle_not_at_endpoint routes, end_point, left_start, visited, result
+  def handle_not_at_endpoint(routes, end_point, left_start, visited, result)
     routes.each do |route|
       next if visited.list.include?(route[:town]) && left_start
 
