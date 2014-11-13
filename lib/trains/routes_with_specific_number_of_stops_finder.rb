@@ -20,22 +20,18 @@ class RoutesWithSpecificNumberOfStopsFinder
     end
 
     routes.each do |route|
-      if visited.size > number_of_stops
-        next
-      end
+      next if visited.size > number_of_stops
 
-      if route[:town] == end_point
-        visited.push route[:town]
-        result.push Route.new(*(visited.clone)) if visited.size == number_of_stops + 1
-        visited.pop
-        break
-      end
+      next if route[:town] != end_point
+
+      visited.push route[:town]
+      result.push Route.new(*(visited.clone)) if visited.size == number_of_stops + 1
+      visited.pop
+      break
     end
 
     routes.each do |route|
-      if visited.size > number_of_stops
-        next
-      end
+      next if visited.size > number_of_stops
 
       visited.push route[:town]
       result.concat search(visited, end_point, number_of_stops)
