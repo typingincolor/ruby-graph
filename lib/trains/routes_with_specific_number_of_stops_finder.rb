@@ -1,3 +1,4 @@
+# RoutesWithSpecificNumberOfStopsFinder
 class RoutesWithSpecificNumberOfStopsFinder
   def initialize(graph)
     @graph = graph
