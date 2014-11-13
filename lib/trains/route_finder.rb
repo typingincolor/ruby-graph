@@ -1,21 +1,22 @@
+# route finder
 class RouteFinder
   def initialize(graph)
     @graph = graph
   end
 
   def find(start_point, end_point)
-    visited = {:list => Array.new, :distance => 0}
+    visited = { :list => [], :distance => 0 }
     visited[:list].push start_point
 
     result = search(visited, end_point, false)
 
-    raise NoSuchRouteException if result.size == 0
+    fail NoSuchRouteException if result.size == 0
 
     result
   end
 
   def search(visited, end_point, left_start)
-    result = Array.new
+    result = []
     begin
       routes = @graph.get_routes_starting_at visited[:list].last
     rescue NoRoutesFoundException
@@ -23,7 +24,7 @@ class RouteFinder
     end
 
     routes.each do |route|
-      next if visited[:list].include? route[:town] && left_start
+      next if visited[:list].include? (route[:town] && left_start)
 
       if route[:town] == end_point
         visited[:list].push route[:town]
@@ -36,7 +37,7 @@ class RouteFinder
     end
 
     routes.each do |route|
-      next if (visited[:list].include? route[:town] || route[:town] != end_point) && left_start
+      next if (visited[:list].include? (route[:town] || route[:town]) != end_point) && left_start
 
       visited[:list].push route[:town]
       visited[:distance] = visited[:distance] + route[:distance]
