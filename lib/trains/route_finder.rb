@@ -28,7 +28,8 @@ class RouteFinder
 
       visited[:list].push route[:town]
       visited[:distance] = visited[:distance] + route[:distance]
-      result.push(route: Route.new(*visited[:list].clone), distance: visited[:distance])
+      result.push(route: Route.new(*visited[:list].clone),
+        distance: visited[:distance])
       visited[:distance] = visited[:distance] - route[:distance]
       visited[:list].pop
       break
