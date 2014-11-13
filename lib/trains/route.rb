@@ -1,4 +1,7 @@
+# a route
 class Route
+  attr_reader towns
+
   def initialize(*towns)
     fail InvalidRouteException if towns.size < 2
 
@@ -9,14 +12,10 @@ class Route
     @towns[index]
   end
 
-  def has_next?(index)
+  def next?(index)
     return true if index < @towns.size - 1
 
     false
-  end
-
-  def towns
-    @towns
   end
 
   def ==(other)

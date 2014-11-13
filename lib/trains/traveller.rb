@@ -8,7 +8,7 @@ class Traveller
   end
 
   def travel
-    if @route.has_next? @current_stop
+    if @route.next? @current_stop
       next_location = @route.get_stop @current_stop + 1
 
       begin
