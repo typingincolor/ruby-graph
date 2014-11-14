@@ -5,10 +5,10 @@ describe RoutesWithSpecificNumberOfStopsFinder do
     graph = Graph.new('AB5,BC6,AC1,CD1,BD4,AD7')
     route_finder = RoutesWithSpecificNumberOfStopsFinder.new(graph, 'A', 'D', 3)
 
-    routes = route_finder.find()
+    routes = route_finder.find
 
     expected = [
-        Route.new('A', 'B', 'C', 'D')
+      Route.new('A', 'B', 'C', 'D')
     ]
 
     expect(routes).to match_array expected
@@ -18,6 +18,6 @@ describe RoutesWithSpecificNumberOfStopsFinder do
     graph = Graph.new('AB5,BC6,AC1,CD1,BD4,AD7')
     route_finder = RoutesWithSpecificNumberOfStopsFinder.new(graph, 'A', 'E', 9)
 
-    expect { route_finder.find() }.to raise_error NoSuchRouteException
+    expect { route_finder.find }.to raise_error NoSuchRouteException
   end
 end

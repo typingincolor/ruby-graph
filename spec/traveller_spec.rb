@@ -6,7 +6,7 @@ describe Traveller do
     route = Route.new('A', 'B')
     traveller = Traveller.new(graph, route)
 
-    expect(traveller.travel).to eq({:distance => 5})
+    expect(traveller.travel).to eq(distance: 5)
   end
 
   it 'can walk a route with three towns' do
@@ -14,7 +14,7 @@ describe Traveller do
     route = Route.new('A', 'B', 'C')
     traveller = Traveller.new(graph, route)
 
-    expect(traveller.travel).to eq({:distance => 9})
+    expect(traveller.travel).to eq(distance: 9)
   end
 
   it 'fails when the start town is invalid' do

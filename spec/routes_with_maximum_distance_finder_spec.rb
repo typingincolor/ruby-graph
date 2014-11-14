@@ -5,11 +5,11 @@ describe RoutesWithMaximumDistanceFinder do
     graph = Graph.new('AB5,BC6,AC1,CD1,BD4,AD7')
     route_finder = RoutesWithMaximumDistanceFinder.new(graph, 'A', 'D', 8)
 
-    routes = route_finder.find()
+    routes = route_finder.find
 
     expected = [
-        {route: Route.new('A', 'C', 'D'), distance: 2},
-        {route: Route.new('A', 'D'), distance: 7}
+      { route: Route.new('A', 'C', 'D'), distance: 2 },
+      { route: Route.new('A', 'D'), distance: 7 }
     ]
 
     expect(routes).to match_array expected
@@ -19,6 +19,6 @@ describe RoutesWithMaximumDistanceFinder do
     graph = Graph.new('AB5,BC6,AC1,CD1,BD4,AD7')
     route_finder = RoutesWithMaximumDistanceFinder.new(graph, 'A', 'E', 9)
 
-    expect { route_finder.find() }.to raise_error NoSuchRouteException
+    expect { route_finder.find }.to raise_error NoSuchRouteException
   end
 end
