@@ -1,6 +1,7 @@
 require_relative '../lib/trains/graph'
 require_relative '../lib/trains/route'
 require_relative '../lib/trains/traveller'
+require_relative '../lib/trains/route_finder_template'
 require_relative '../lib/trains/route_finder'
 require_relative '../lib/trains/shortest_route_finder'
 require_relative '../lib/trains/routes_with_specific_number_of_stops_finder'

@@ -18,7 +18,6 @@ describe RoutesWithSpecificNumberOfStopsFinder do
     graph = Graph.new('AB5,BC6,AC1,CD1,BD4,AD7')
     route_finder = RoutesWithSpecificNumberOfStopsFinder.new(graph, 'A', 'E', 9)
 
-    routes = route_finder.find()
-    expect(routes.size).to eq(0)
+    expect { route_finder.find() }.to raise_error NoSuchRouteException
   end
 end

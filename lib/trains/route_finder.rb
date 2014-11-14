@@ -1,5 +1,5 @@
 # RouteFinder
-class RouteFinder
+class RouteFinder < RouteFinderTemplate
   def initialize(graph, start_point, end_point)
     @graph = graph
     @start_point = start_point
