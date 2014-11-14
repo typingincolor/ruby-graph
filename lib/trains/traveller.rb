@@ -13,10 +13,7 @@ class Traveller
       next_location = @route.get_stop @current_stop + 1
 
       begin
-        local_route = @graph.route? @current_location, next_location
-        @distance_travelled += local_route[:distance]
-        @current_stop += 1
-        @current_location = next_location
+        goto_next_stop next_location
         travel
       rescue NoRoutesFoundException
         raise NoSuchRouteException
@@ -24,5 +21,12 @@ class Traveller
     end
 
     { distance: @distance_travelled }
+  end
+
+  def goto_next_stop(next_location)
+    local_route = @graph.route? @current_location, next_location
+    @distance_travelled += local_route[:distance]
+    @current_stop += 1
+    @current_location = next_location
   end
 end
