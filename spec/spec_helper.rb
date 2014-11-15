@@ -1,3 +1,6 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require_relative '../lib/trains/graph'
 require_relative '../lib/trains/route'
 require_relative '../lib/trains/traveller'
@@ -12,6 +15,3 @@ require_relative '../lib/trains/end_of_route_exception'
 require_relative '../lib/trains/no_such_route_exception'
 require_relative '../lib/trains/no_routes_found_exception'
 require_relative '../lib/trains/visited_towns'
-
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
