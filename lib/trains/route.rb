@@ -23,8 +23,4 @@ class Route
 
     false
   end
-
-  def to_s
-    @towns.to_s
-  end
 end
