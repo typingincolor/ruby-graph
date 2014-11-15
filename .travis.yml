@@ -1,4 +1,4 @@
 language: ruby
 rvm:
 - 2.1.1
-script: bundle exec rspec -fdoc
+script: CODECLIMATE_REPO_TOKEN=6857864b14126ba2e923d9c401fb83c857eba55617ee42dae44752739e8706eb bundle exec rake

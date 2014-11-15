@@ -12,3 +12,6 @@ require_relative '../lib/trains/end_of_route_exception'
 require_relative '../lib/trains/no_such_route_exception'
 require_relative '../lib/trains/no_routes_found_exception'
 require_relative '../lib/trains/visited_towns'
+
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
