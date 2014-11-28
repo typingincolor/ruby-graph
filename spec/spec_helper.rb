@@ -1,5 +1,9 @@
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+require 'simplecov'
+SimpleCov.start do
+  add_filter do |src|
+    !(src.filename =~ /^#{SimpleCov.root}\/lib/)
+  end
+end
 
 require_relative '../lib/trains/graph'
 require_relative '../lib/trains/route'
